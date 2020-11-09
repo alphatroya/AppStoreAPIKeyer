@@ -17,7 +17,7 @@ struct AppStoreAPIKeyer: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: "as-keyer",
         abstract: "A CLI tool to generate app-store.json file for using Fastlane AppStore Connect API",
-        version: "0.0.1"
+        version: "0.0.2"
     )
 
     @Option(help: "Path to .p8 key file", completion: .file(extensions: ["p8"]))
@@ -38,9 +38,7 @@ struct AppStoreAPIKeyer: ParsableCommand {
             throw ValidationError("wrong key data to string transformation")
         }
 
-        let replaced = keyString.split(separator: "\n").joined(separator: "\n")
-
-        let json = AppStoreJSON(keyId: keyID, issuerId: issuerID, key: replaced)
+        let json = AppStoreJSON(keyId: keyID, issuerId: issuerID, key: keyString)
         let jsonEncoder = JSONEncoder()
         jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
 
