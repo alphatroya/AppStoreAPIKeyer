@@ -7,7 +7,6 @@ use structopt::StructOpt;
 
 #[derive(StructOpt)]
 #[structopt(
-    name = "as-keyer",
     about = "A CLI tool to generate app-store.json file for using Fastlane AppStore Connect API
 "
 )]
