@@ -60,7 +60,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut output = opt.output;
     output.push("api-key.json");
-    let mut result = File::create(output).unwrap();
-    let _ = result.write(&encoded).unwrap();
+    let mut result = File::create(output)?;
+    let _ = result.write(&encoded)?;
     Ok(())
 }

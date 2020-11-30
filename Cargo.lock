@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "app_store_api_keyer"
+name = "aps-keyer"
 version = "0.0.3"
 dependencies = [
  "serde",
