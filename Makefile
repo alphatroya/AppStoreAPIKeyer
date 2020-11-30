@@ -6,31 +6,27 @@ all: build
 
 ## build: launch build
 build:
-	swift build -c release --disable-sandbox
+	cargo build
 
 ## install: install the application
-install: build
-	install ".build/release/AppStoreAPIKeyer" "$(bindir)/$(app_name)"
+install:
+	cargo install --path .
 
 ## uninstall: remove application
 uninstall:
-	rm -rf "$(bindir)/$(app_name)"
+	cargo uninstall
 
 ## clean: clean build artifacts
 clean:
-	rm -rf .build
-
-## project: Generate xcproject file
-project:
-	swift package generate-xcodeproj
+	rm -rf target
 
 ## test: Launch unit tests
 test:
-	swift test
+	cargo test
 
 ## fmt: Launch swift files code formatter
 fmt:
-	mint run swiftformat Sources Tests
+	cargo fmt
 
 ## help: Prints help message
 help:
