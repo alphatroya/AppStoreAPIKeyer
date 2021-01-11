@@ -1,13 +1,13 @@
 use serde::Serialize;
 use std::fs::File;
-use std::io::{Read, Write};
+use std::io::Read;
 use std::path::PathBuf;
 use std::result::Result;
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
 #[structopt(
-    about = "A CLI tool to generate app-store.json file for using Fastlane AppStore Connect API
+    about = "A CLI tool to generate json file for using Fastlane AppStore Connect API
 "
 )]
 struct Opt {
@@ -22,10 +22,6 @@ struct Opt {
     /// Issuer ID value
     #[structopt(long)]
     issuer_id: String,
-
-    /// Output file location
-    #[structopt(long, default_value = ".")]
-    output: PathBuf,
 }
 
 #[derive(Serialize)]
@@ -55,11 +51,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         duration: 1200,
         in_house: false,
     };
-    let encoded = serde_json::to_vec(&json)?;
-
-    let mut output = opt.output;
-    output.push("api-key.json");
-    let mut result = File::create(output)?;
-    let _ = result.write(&encoded)?;
+    let encoded = serde_json::to_string(&json)?;
+    println!("{}", encoded);
     Ok(())
 }
