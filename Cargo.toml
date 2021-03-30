@@ -1,6 +1,6 @@
 [package]
-name = "aps-keyer"
-version = "0.0.4"
+name = "keyer-generate"
+version = "0.0.5"
 authors = ["Alexey Korolev <alphatroya@gmail.com>"]
 edition = "2018"
 
